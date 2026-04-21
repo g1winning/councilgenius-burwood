@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+fidelity_protocol/report_local.md
+research/reconciliation_phase_f.md
+research/r1_r10/_raw/

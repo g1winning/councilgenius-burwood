@@ -1,0 +1,6 @@
+# Burwood Council V10.3.1 — Python dependencies
+# Server uses stdlib http.server + urllib.request (direct Anthropic API calls),
+# so the runtime has no hard external deps. Entries below are present for
+# parity with the V10 fleet template and as optional fallbacks.
+anthropic>=0.40.0
+metaphone>=0.6

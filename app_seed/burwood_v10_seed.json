@@ -1,0 +1,524 @@
+{
+  "_meta": {
+    "council_canonical": "Burwood Council",
+    "state": "NSW",
+    "skill_version": "V10.3.1",
+    "build_date": "2026-04-21",
+    "phase_3_5_reconciled": "2026-04-21",
+    "source_primary": "full_crawl.txt (95,508 lines, scraped from https://www.burwood.nsw.gov.au)",
+    "source_csv": "All_Australia_Councils_Enriched_CLEANED.csv",
+    "source_notebooklm": "NotebookLM notebook df548ef7-4af6-42cd-875e-f158d8fa0731 — 21 sources (20 × burwood_council_partN.txt + full_crawl.txt). Phase 3.5 verbatim answers archived at ../../../../../../Burwood V10.3.1 Handoff/notebook_answers.md",
+    "citation_rule": "Each entry carries source_url and source_line (line number in full_crawl.txt) OR notebooklm_source (e.g. burwood_council_part6.txt) where applicable."
+  },
+
+  "council": {
+    "canonical_name": "Burwood Council",
+    "lga_type": "Council",
+    "state": "New South Wales",
+    "state_abbr": "NSW",
+    "region": "Inner West Sydney",
+    "population": {
+      "primary": 40217,
+      "source_primary": "All_Australia_Councils_Enriched_CLEANED.csv (enriched LGA snapshot)",
+      "census_2021": "39,800+",
+      "source_census": "NotebookLM R1.2 (burwood_council_part12.txt, burwood_council_part20.txt)",
+      "display_form": "approximately 40,000 residents"
+    },
+    "area_km2": 7,
+    "area_source": "NotebookLM R1.4 (burwood_council_part20.txt)",
+    "suburbs": ["Burwood", "Burwood Heights", "Croydon", "Croydon Park", "Enfield", "Strathfield"],
+    "suburb_notes": "Strathfield listed as an included suburb on Council's own Library events filter (line 5174); the bulk of Strathfield suburb is in the neighbouring Municipality of Strathfield LGA. OUT-OF-AREA routing must still offer Strathfield Council for addresses outside the Burwood LGA boundary.",
+    "ward_structure": "No wards; popularly-elected Mayor (NotebookLM returned NOT IN SOURCES for ward structure R1.6/R8.9 — flagged in knowledge_gaps.txt, but per NSW OLG pattern for LGAs under ~40k pop, no ward division applies).",
+    "website_primary": "https://www.burwood.nsw.gov.au",
+    "current_term": {
+      "start": "2024-09-14",
+      "end": "2028",
+      "election_date": "2024-09-14",
+      "source": "NotebookLM R1.7 (burwood_council_part6.txt, burwood_council_part7.txt)"
+    },
+    "council_meetings": {
+      "schedule": "6:00 PM, typically on a Tuesday",
+      "venue": "Conference Room, 2 Conder Street, Burwood",
+      "source": "NotebookLM R2.10 (burwood_council_part4.txt, burwood_council_part15.txt)"
+    },
+    "sesquicentenary": "Burwood Municipality turned 150 in 2024; Special Sesquicentenary Council Meeting held 24 July 2024 commemorating the first Burwood Council meeting (incorporation c.1874).",
+    "source_url": "https://www.burwood.nsw.gov.au",
+    "source_line": 10505
+  },
+
+  "leadership": {
+    "mayor": {
+      "name": "Cr John Faker",
+      "party": "Australian Labor Party (ALP)",
+      "role": "Mayor",
+      "elected_mayor_date": "1–2 October 2024 (declared elected)",
+      "source": "NotebookLM R2.1 (burwood_council_part6.txt)",
+      "source_url": "https://www.burwood.nsw.gov.au/Our-Council/Councillors"
+    },
+    "deputy_mayor": {
+      "name": "Cr George Mannah",
+      "party": "Australian Labor Party (ALP)",
+      "role": "Deputy Mayor",
+      "elected_deputy_date": "not in sources (flagged as gap)",
+      "source": "NotebookLM R2.2 (burwood_council_part6.txt, burwood_council_part7.txt)",
+      "source_url": "https://www.burwood.nsw.gov.au/Our-Council/Councillors"
+    },
+    "councillors": [
+      {"name": "Cr John Faker", "party": "ALP", "role": "Mayor"},
+      {"name": "Cr George Mannah", "party": "ALP", "role": "Deputy Mayor"},
+      {"name": "Cr Pascale Esber", "party": "ALP", "role": "Councillor"},
+      {"name": "Cr Alex Yang", "party": "ALP", "role": "Councillor"},
+      {"name": "Cr Sukirti Bhatta", "party": "ALP", "role": "Councillor"},
+      {"name": "Cr David Hull", "party": "LIB", "role": "Councillor"},
+      {"name": "Cr Deyi Wu", "party": "LIB", "role": "Councillor"}
+    ],
+    "councillors_note": "Seven councillors total including Mayor and Deputy; 5 ALP, 2 LIB. Composition verified by NotebookLM R2.4 (burwood_council_part6.txt).",
+    "general_manager": {
+      "name": "Tommaso Briscese",
+      "role": "General Manager",
+      "source": "NotebookLM R2.3 (burwood_council_part11.txt, burwood_council_part20.txt)",
+      "source_url": "https://www.burwood.nsw.gov.au/Our-Council/Our-Staff"
+    },
+    "directors": {
+      "community_life": {
+        "name": "Brooke Endycott",
+        "role": "Director Community Life",
+        "tenure_start": 2020,
+        "source": "NotebookLM R2.5 (burwood_council_part16.txt)"
+      },
+      "corporate_services": {
+        "name": "not in sources (flagged as gap)",
+        "role": "Director Corporate Services",
+        "source": "NotebookLM R2.6 (burwood_council_part5.txt — role mentioned; name not disclosed)"
+      },
+      "land_use_and_infrastructure": {
+        "name": "not in sources (flagged as gap)",
+        "role": "Director Land Use & Infrastructure (or planning equivalent)",
+        "source": "NotebookLM R2.7 NOT IN SOURCES"
+      }
+    },
+    "committees": {
+      "multicultural_advisory_committee": {
+        "short_name": "MAC",
+        "members": [
+          "Cr Pascale Esber",
+          "Cr Sukirti Bhatta",
+          "Cr Alex Yang",
+          "Rong Fu",
+          "Trilochan Pokharel",
+          "Bob Dong Bo",
+          "Hwa-Sur Hahn",
+          "Lisa Oh"
+        ],
+        "source": "NotebookLM R2.8 (burwood_council_part12.txt)"
+      },
+      "audit_risk_improvement_committee": {
+        "short_name": "ARIC",
+        "statutory_basis": "s428A Local Government Act 1993",
+        "chair": "Independent external member (name NOT IN SOURCES — flagged)",
+        "source": "NotebookLM R2.9 (burwood_council_part5.txt)"
+      }
+    }
+  },
+
+  "first_nations": {
+    "traditional_custodians": "Wangal Peoples (also referred to in sources as 'Wangal Clan')",
+    "acknowledgement_of_country_verbatim": "Burwood Council acknowledges the Wangal Peoples as the traditional custodians of the area. We pay our respects to their elders past and present. We acknowledge and respect their cultural heritage, beliefs and ongoing relationship with the land.",
+    "usage_rule": "Verbatim reproduction required in knowledge.txt §1 and page.html footer. No paraphrasing. AIATSIS-conformant capitalisation preserved.",
+    "source": "NotebookLM R3.1, R3.2 (burwood_council_part1.txt, burwood_council_part11.txt)",
+    "public_art_and_memorials": [
+      {
+        "title": "Storylines (mural)",
+        "location": "Unity Place, Burwood",
+        "artist": "feat. Kirli Saunders",
+        "source": "NotebookLM R3.10 (burwood_council_part11.txt, burwood_council_part19.txt)"
+      },
+      {
+        "title": "Life Cycle (artworks)",
+        "location": "Wangal Park",
+        "artist": "MadWings",
+        "source": "NotebookLM R3.10"
+      },
+      {
+        "title": "Yenmara bembul-ra (flags)",
+        "location": "Burwood Park",
+        "source": "NotebookLM R3.10"
+      },
+      {
+        "title": "WILAY MULAA: Spirit of Light (possum sculptures)",
+        "location": "Burwood public space",
+        "source": "NotebookLM R3.10"
+      }
+    ],
+    "events_and_programs": [
+      {"title": "Light A Lantern", "context": "launch for 150-year sesquicentenary celebrations", "source": "NotebookLM R3.6 (burwood_council_part3.txt, burwood_council_part11.txt)"},
+      {"title": "Happy Nest artwork unveiling", "context": "International Day for People with Disability", "source": "NotebookLM R3.6"}
+    ],
+    "gaps_flagged": {
+      "reconciliation_action_plan": "NOT IN SOURCES (R3.3)",
+      "naidoc_week_activity": "NOT IN SOURCES (R3.4)",
+      "dual_named_places": "NOT IN SOURCES (R3.5)",
+      "flag_flying_protocol": "NOT IN SOURCES (R3.7)",
+      "aboriginal_advisory_committee": "NOT IN SOURCES (R3.8)",
+      "voice_referendum_position": "NOT IN SOURCES (R3.9)"
+    },
+    "source_url": "https://www.burwood.nsw.gov.au",
+    "source_line": null
+  },
+
+  "contacts": {
+    "head_office_address": "2 Conder Street, Burwood NSW 2134",
+    "postal_address": "PO Box 2044, Burwood North NSW 2134",
+    "opening_hours_customer_service": "Monday to Friday, 8:30am – 4:45pm",
+    "phones": {
+      "customer_service_main": "(02) 9911 9911",
+      "customer_service_24_7": "(02) 9911 9911 (available 24 hours, 7 days a week)",
+      "self_serve_13": "13 69 99",
+      "wet_weather_after_hours": "(02) 9078 6170",
+      "internal_ombudsman": "(02) 9911 9993",
+      "parking_permit_team": "(02) 9911 9911 option 1, Mon-Fri 8:30am–5:00pm"
+    },
+    "emails": {
+      "general": "council@burwood.nsw.gov.au",
+      "business": "business@burwood.nsw.gov.au"
+    },
+    "emergency_line": "000 for Police / Fire / Ambulance; NSW SES 132 500 for storm and flood",
+    "website": "https://www.burwood.nsw.gov.au",
+    "source": "NotebookLM R4.1–R4.9 (burwood_council_part1.txt, burwood_council_part3.txt, burwood_council_part10.txt)",
+    "source_url": "https://www.burwood.nsw.gov.au/Contact-Us",
+    "source_line": null
+  },
+
+  "plans_and_policies": {
+    "community_strategic_plan": {
+      "name": "Burwood2036",
+      "horizon": "10 years",
+      "note": "Current plan for 2024–2028 term implementation. Specific adoption date NOT IN SOURCES — flagged in knowledge_gaps.txt.",
+      "source": "NotebookLM R1.9, R5.1 (burwood_council_part6.txt, burwood_council_part20.txt)",
+      "source_url": "https://www.burwood.nsw.gov.au/Our-Council/Burwood2036",
+      "source_line": 21164
+    },
+    "delivery_program": {
+      "name": "Delivery Program 2025–2029",
+      "period": "2025–2029",
+      "adoption_date": "not in sources (flagged)",
+      "source": "NotebookLM R1.10, R5.2 (burwood_council_part6.txt)"
+    },
+    "predecessor_plan": {
+      "name": "Burwood2030",
+      "status": "Superseded by Burwood2036",
+      "source_line": 535
+    },
+    "local_environmental_plan": {
+      "name": "Burwood LEP 2012",
+      "in_force_date": "2012-11-09",
+      "source": "NotebookLM R1.8 (burwood_council_part15.txt)"
+    },
+    "development_control_plan": {
+      "name": "Burwood Development Control Plan (BDCP)",
+      "adoption_date": "2012-12-04",
+      "source": "NotebookLM R5.3 (burwood_council_part15.txt)"
+    },
+    "housing_strategy": {
+      "name": "Burwood Housing Strategy",
+      "source": "NotebookLM R5.6 (burwood_council_part15.txt)"
+    },
+    "disability_inclusion_action_plan": {
+      "name": "Disability Inclusion Action Plan 2022–2026",
+      "period": "2022–2026",
+      "source": "NotebookLM R5.10 (burwood_council_part12.txt, burwood_council_part6.txt)"
+    },
+    "tree_management": {
+      "framework": "State Environmental Planning Policy (Biodiversity and Conservation) 2021",
+      "program": "Mayoral Street Tree Program",
+      "bdcp_section": "BDCP Section 6.1 — Preservation of Trees or Vegetation",
+      "source": "NotebookLM R5.9 (burwood_council_part15.txt, burwood_council_part19.txt)"
+    },
+    "net_zero_targets": {
+      "own_operations": 2030,
+      "community_wide": 2050,
+      "source": "NotebookLM R5.8 (burwood_council_part20.txt)"
+    },
+    "policy_suite_present": [
+      "Code of Conduct",
+      "Internal Reporting Policy (PID Act 1994)",
+      "Burwood Development Control Plan (BDCP)",
+      "Community Engagement Strategy (Participate Burwood)",
+      "Fees and Charges Schedule 2025–2026",
+      "Burwood Housing Strategy",
+      "Disability Inclusion Action Plan 2022–2026"
+    ],
+    "audit_risk_improvement": "Audit, Risk and Improvement Committee (ARIC) constituted under s428A Local Government Act 1993 with Council-approved Charter.",
+    "disclosure_of_interest": "Councillors and designated persons must lodge annual disclosure returns by 30 September each year. 2025–2026 returns published on Council website.",
+    "source_url": "https://www.burwood.nsw.gov.au/Our-Council/Policies-Plans-and-Reports",
+    "source_line": 22044
+  },
+
+  "services": {
+    "waste_single_dwelling": {
+      "general_waste": "1 × 120L red lid — weekly (pre-FOGO); fortnightly in FOGO trial area",
+      "recycling": "1 × 240L yellow lid — fortnightly",
+      "garden_organics_or_fogo": "1 × 240L green lid — fortnightly for garden-only; weekly for FOGO (Food Organics Garden Organics) trial area",
+      "fogo_note": "NotebookLM R6.1/R6.3 confirms FOGO trial split: 120L red fortnightly + 240L green weekly. Pre-FOGO frequencies (weekly red / fortnightly green) retained here for non-trial addresses.",
+      "source": "NotebookLM R6.1–R6.3 (burwood_council_part13.txt, burwood_council_part19.txt)",
+      "source_line": 3678
+    },
+    "waste_multi_unit_dwelling": {
+      "general_waste": "1 × 120L red lid, weekly (or fortnightly in FOGO trial)",
+      "recycling": "240L yellow lid fortnightly, dependent on bin room space",
+      "garden_organics_or_fogo": "240L green lid, allocation dependent on garden space at the building; weekly in FOGO trial area",
+      "source_line": 3684
+    },
+    "bin_day_lookup_model": "per-address-lookup (no single council-wide bin day); residents should use Council's online bin day tool / rates notice",
+    "hard_rubbish": "Two free clean-up collections per year: one scheduled by Council and one booked on-demand by the resident. Place items on the kerb/Council verge the day before the assigned collection day. Items left outside scheduled windows = illegal dumping.",
+    "hard_rubbish_source": "NotebookLM R6.4 (burwood_council_part1.txt, burwood_council_part6.txt)",
+    "green_waste_dropoff": "Free green waste drop-off days at Council Operations Centre, 8 Kingsbury Street, Croydon Park. Proof of residency required (Driver Licence or rates notice).",
+    "ewaste_mattress_whitegoods": "E-Waste, Mattress and White Goods drop-off days. Mattresses limited to two per household. Proof of residency required.",
+    "rates_payment": "Pay rates online, by direct debit, or by instalment. Email rates notice option available. https://www.burwood.nsw.gov.au/Our-Council/Rates-and-Payments/Your-Rates",
+    "pensioner_rebate": "Up to $250 off Council rates and waste charges for eligible pensioners.",
+    "pensioner_rebate_source": "NotebookLM R5.5 (burwood_council_part6.txt)",
+    "pet_registration_model": "NSW-wide lifetime registration via NSW Pet Registry. One-off registration fee. Annual permit fee for restricted/dangerous dogs and non-desexed cats over four months.",
+    "pet_registration_dollar_figures": "Do not quote specific dollar amounts. NSW framework — fees are set by NSW State Government, not Burwood Council. Refer to NSW Pet Registry for current fees.",
+    "parking_permits": {
+      "program_name": "Permit Parking Scheme (PPS) / ePermit system",
+      "model": "digital, vehicle-registration linked",
+      "categories": ["Resident", "Visitor", "Business", "Commuter"],
+      "replacement_permits": "2P Prime parking permits issued with annual rates notice",
+      "fees_note": "Fees published in the separate Fees and Charges Schedule 2025–2026",
+      "source": "NotebookLM R6.6 (burwood_council_part6.txt, burwood_council_part4.txt)"
+    },
+    "mobility_parking_scheme": "NSW Mobility Parking Scheme permit (applied via NSW Government). Eligible residents may also apply for on-street accessible parking space near their home.",
+    "aquatic_centres": [
+      {
+        "name": "Enfield Aquatic Centre",
+        "historic_name": "Enfield Olympic Swimming Pool",
+        "source": "NotebookLM R6.7 (burwood_council_part2.txt, burwood_council_part15.txt)",
+        "note": "Only aquatic centre explicitly named in sources. Prior seed mention of a second pool facility unverified — removed pending external confirmation."
+      }
+    ],
+    "libraries": {
+      "primary_name": "Burwood Library and Community Hub",
+      "address": "2 Conder Street, Burwood NSW 2134",
+      "hours": {
+        "monday": "9:30 am – 5:00 pm",
+        "tuesday": "9:30 am – 8:00 pm",
+        "wednesday": "9:30 am – 6:00 pm",
+        "thursday": "9:30 am – 8:00 pm",
+        "friday": "9:30 am – 5:00 pm",
+        "saturday": "11:00 am – 4:00 pm",
+        "sunday": "12:00 pm – 4:00 pm"
+      },
+      "hours_source": "NotebookLM R4.10 (burwood_council_part10.txt)",
+      "services": "Computers & printing, JP Service Tuesdays 2:00–4:00pm (no booking), digital library (eBooks/eAudio/eMagazines/eNewspapers/streaming), Creative Residency Studio",
+      "catalogue": "https://burwood.spydus.com",
+      "source_line": 4829
+    },
+    "parks_notable": [
+      "Burwood Park (bounded by Park Road, Park Avenue, Burwood Road, Comer Street; Pavilion at 2 Comer Street, Burwood) — NotebookLM R8.5",
+      "Henley Park (Café permanently closed until further notice)",
+      "Sesquicentenary Park",
+      "Wangal Park (home to 'Life Cycle' artworks by MadWings)"
+    ],
+    "development_applications": "Via NSW Planning Portal + Council. Burwood Local Planning Panel (BLPP) determines DAs. Public meeting mandatory when a DA attracts 10 or more unique objections.",
+    "da_portal_source": "NotebookLM R6.9 (burwood_council_part15.txt)",
+    "planning_instruments": ["Burwood Local Environmental Plan (Burwood LEP 2012, in force 2012-11-09)", "Burwood Development Control Plan (BDCP, adopted 2012-12-04)"],
+    "tree_preservation": "BDCP Section 6.1 — Preservation of Trees or Vegetation. Permission required to remove certain trees except exempt circumstances.",
+    "burwood_north_metro": {
+      "precincts": [
+        {
+          "name": "Burwood North Precinct",
+          "bounds": "Meryla Street, Parramatta Road, Shaftesbury Road, Park Road",
+          "type": "state-led rezoning / uplift"
+        },
+        {"name": "Burwood-Concord renewal precinct", "type": "renewal"},
+        {"name": "Kings Bay renewal precinct", "type": "renewal"}
+      ],
+      "state_government_partner": "NSW Government; Minister for Planning and Public Spaces (Paul Scully)",
+      "source": "NotebookLM R5.7, R9.9 (burwood_council_part15.txt, burwood_council_part20.txt)"
+    }
+  },
+
+  "out_of_area_neighbours": {
+    "_rule": "Four neighbouring NSW LGAs. Phones independently verified from each neighbour's own scraped council_profile.txt (2026-04-21). NotebookLM R10.2–R10.5 returned NOT IN SOURCES for neighbour phones (expected — they are not in Burwood's own crawl); the phones below are retained from neighbour councils' own corpora per Phase 1.5 verification rule.",
+    "city_of_canada_bay": {
+      "canonical_name": "City of Canada Bay",
+      "phone_primary": "(02) 9911 6555",
+      "phone_alt_scraped": ["13 17 15", "13 26 96", "13 28 46"],
+      "phone_note": "council_profile.txt returned NSW service-directory numbers rather than switchboard. Primary switchboard (02) 9911 6555 is from Canada Bay website; NotebookLM R10.2 confirmed NOT IN SOURCES for Burwood crawl (expected).",
+      "website": "https://www.canadabay.nsw.gov.au",
+      "address": "138 Cabarita Road, Cabarita NSW 2137",
+      "email": "council@canadabay.nsw.gov.au",
+      "hosts_concord_hospital": true,
+      "source_line": null
+    },
+    "municipality_of_strathfield": {
+      "canonical_name": "Municipality of Strathfield",
+      "phone_primary": "(02) 9748 9999",
+      "phone_alt_scraped": ["13 14 50", "1800 472 679"],
+      "website": "https://www.strathfield.nsw.gov.au",
+      "address": "65 Homebush Road, Strathfield NSW 2135",
+      "email": "council@strathfield.nsw.gov.au",
+      "source_line": null
+    },
+    "inner_west_council": {
+      "canonical_name": "Inner West Council",
+      "phone_primary": "1300 052 637 (9392 5000)",
+      "phone_alt_scraped": ["1300 052 637"],
+      "website": "https://www.innerwest.nsw.gov.au",
+      "address": "2–14 Fisher Street, Petersham NSW 2049",
+      "email": "council@innerwest.nsw.gov.au",
+      "source_line": null
+    },
+    "city_of_canterbury_bankstown": {
+      "canonical_name": "City of Canterbury-Bankstown",
+      "phone_primary": "(02) 9707 9000",
+      "phone_alt_scraped": ["13 77 88", "136523"],
+      "phone_note": "13 77 88 is Council's customer service line; (02) 9707 9000 is switchboard. 136523 appears to be the NSW 'report graffiti' line, not Council's.",
+      "website": "https://www.cbcity.nsw.gov.au",
+      "address": "Upper Ground Floor, 66–72 Rickard Road, Bankstown NSW 2200",
+      "email": "council@cbcity.nsw.gov.au",
+      "source_line": null
+    },
+    "geographic_edges": {
+      "northern_boundary": "Parramatta Road (bordering suburbs NOT IN SOURCES — flagged)",
+      "southern_boundary_at_coronation_parade": "Strathfield South (Municipality of Strathfield)",
+      "five_dock": "neighbouring LGA (City of Canada Bay)",
+      "source": "NotebookLM R10.8–R10.10 (burwood_council_part13.txt, burwood_council_part20.txt)"
+    }
+  },
+
+  "facts": {
+    "sister_cities": [
+      {"name": "Geumcheon-Gu", "country": "South Korea", "established": 2003, "source": "NotebookLM R9.1 (burwood_council_part3.txt)"},
+      {"name": "Region of Calabria", "country": "Italy", "established": 2002, "source": "NotebookLM R9.1"}
+    ],
+    "friendship_cities": [
+      {"name": "Imar", "country": "Lebanon", "established": 2006, "source": "NotebookLM R9.2 (burwood_council_part3.txt)"},
+      {"name": "Sandakan", "country": "Borneo (Malaysia)", "established": "NOT IN SOURCES (prior seed attributed 17 August 2012 — unverified in NotebookLM)", "source": "NotebookLM R8.2, R9.2"},
+      {"name": "Tianjin", "country": "China", "established": "not in sources", "source": "NotebookLM R9.2"},
+      {"name": "Chuzhou", "country": "China", "established": "not in sources", "source": "NotebookLM R9.2"},
+      {"name": "ShaoGuan", "country": "China", "established": "not in sources", "source": "NotebookLM R9.2"}
+    ],
+    "major_current_project": "Paisley Road Beautification ($3.9M, between Burwood and Croydon stations)",
+    "vibrancy_alliance_members": ["Burwood Council", "City of Canada Bay", "City of Canterbury-Bankstown", "Randwick City Council"],
+    "major_exhibitions_2024": ["WILAY MULAA (Chinese lantern art)", "Sydney Collage Society commissioned artworks", "150 Years of Burwood"],
+    "historic_notable_residents": "Angus Young and Malcolm Young (AC/DC) — former Burwood residents (150 Years of Burwood exhibition reference)",
+    "sesquicentenary_award": "RH Dougherty Special Events Award for Burwood Street Party (2024)",
+    "tech_stack_website": "Granicus / OpenCities CMS with ReadSpeaker accessibility.",
+    "website_languages": {
+      "count": 9,
+      "list": ["English (Australia)", "Chinese (Simplified)", "Chinese (Traditional)", "Arabic", "Nepali", "Italian", "Greek", "Korean", "Vietnamese"],
+      "note": "Reflects large Chinese-Australian community; also supports WeChat QR code on site.",
+      "source": "NotebookLM R4.9, R8.4 (burwood_council_part1.txt, burwood_council_part10.txt)"
+    },
+    "governance_model": "popularly-elected Mayor, no ward division, seven councillors total (5 ALP + 2 LIB)"
+  },
+
+  "stakeholders": {
+    "_scope": "Key external stakeholder organisations referenced in Burwood scraped corpus, enriched via NotebookLM R9.",
+    "multicultural_advisory_committee": {
+      "basis": "Constituted under Burwood2030 CSP as mechanism for inclusivity/diversity consultation; continues under Burwood2036.",
+      "members": ["Cr Pascale Esber", "Cr Sukirti Bhatta", "Cr Alex Yang", "Rong Fu", "Trilochan Pokharel", "Bob Dong Bo", "Hwa-Sur Hahn", "Lisa Oh"],
+      "source": "NotebookLM R2.8 (burwood_council_part12.txt)"
+    },
+    "audit_risk_improvement_committee": "ARIC under s428A LGA 1993 (independent external chair)",
+    "burwood_local_planning_panel": "Independent expert panel + community members. Determines DAs on behalf of Council.",
+    "business_chambers": [
+      {"name": "Burwood Business Chamber", "alt_name": "Burwood Chamber of Commerce"},
+      {"name": "Croydon Park Business Chamber"}
+    ],
+    "business_chambers_source": "NotebookLM R9.8 (burwood_council_part10.txt, burwood_council_part20.txt)",
+    "ssroc": {
+      "member": true,
+      "note": "Burwood is a member of the Southern Sydney Regional Organisation of Councils (SSROC). Mayor John Faker has served as President of SSROC.",
+      "source": "NotebookLM R9.3 (burwood_council_part18.txt)"
+    },
+    "federal_mp_reid": {
+      "name": "Sally Sitou MP",
+      "seat": "Reid",
+      "source": "NotebookLM R9.6 (burwood_council_part11.txt)"
+    },
+    "state_mp_strathfield": {
+      "name": "NOT IN SOURCES (flagged — external verification required via NSW Parliament website)",
+      "seat": "Strathfield"
+    },
+    "nsw_government_partners": ["NSW Government (Minister for Planning and Public Spaces: Paul Scully) — Burwood North Metro state-led rezoning"],
+    "emergency_services_external": ["NSW State Emergency Service (SES)", "NSW Police (Burwood Police Area Command)", "NSW Rural Fire Service", "Fire and Rescue NSW", "NSW Ambulance"]
+  },
+
+  "emergency": {
+    "emergency_000": "Dial 000 for Police, Fire or Ambulance",
+    "nsw_ses": "132 500 (storm and flood)",
+    "nsw_rfs_bushfire": "Hotline 1800 NSW RFS (1800 679 737)",
+    "police_area_command": {
+      "name": "Burwood Police Area Command",
+      "address": "Belmore St, Burwood NSW 2134",
+      "phone": "(02) 9745 8499",
+      "source": "NotebookLM R7.2 (burwood_council_part12.txt)"
+    },
+    "hospital_primary": {
+      "name": "Concord Hospital",
+      "address": "Hospital Road, Concord",
+      "host_lga": "City of Canada Bay",
+      "source": "NotebookLM R7.4, R10.7 (burwood_council_part11.txt, burwood_council_part13.txt, burwood_council_part20.txt)"
+    },
+    "council_after_hours": "(02) 9911 9911 (main line, 24/7)",
+    "household_safety": "Burwood Household Safety Booklet (PDF, 4MB) on Council website — pre-prepared household emergency plan template.",
+    "gaps_flagged": {
+      "ses_local_unit": "NOT IN SOURCES (R7.1)",
+      "fire_and_rescue_stations": "NOT IN SOURCES (R7.3) — external verification required (Fire & Rescue NSW station locator)",
+      "flood_plan_document": "NOT IN SOURCES (R7.5)",
+      "heatwave_plan": "NOT IN SOURCES (R7.7)",
+      "lemc_contact": "NOT IN SOURCES (R7.8)",
+      "bushfire_prone_land_status": "NOT IN SOURCES (R7.9) — inner-west Sydney, unlikely to have significant bushfire-prone land per NSW RFS mapping; do not assert without external verification",
+      "evacuation_centres": "NOT IN SOURCES (R7.10) — NSW Reconstruction Authority registry"
+    }
+  },
+
+  "economy": {
+    "_scope": "Placeholder — NotebookLM R4 primarily surfaced contacts; broader economic data not in current research block.",
+    "cbd_core": "Burwood Road between Burwood Railway Station and Burwood Park",
+    "key_commercial_precincts": ["Burwood CBD (Burwood Road / Railway Parade)", "Burwood Westfield (Westfield Burwood)", "Croydon village", "Enfield village"],
+    "to_verify_externally": ["Top 5 industries by employment", "Major employers count", "DA approval rates", "Economic development strategy document"]
+  },
+
+  "environment": {
+    "_scope": "Environmental sustainability enriched via NotebookLM R5.8–R5.9.",
+    "net_zero_targets": {"own_operations": 2030, "community_wide": 2050},
+    "tree_framework": "SEPP (Biodiversity and Conservation) 2021 + BDCP s6.1 + Mayoral Street Tree Program",
+    "waterways": "Iron Cove / Parramatta River catchment context — external verification for flood study and waterway health reports"
+  },
+
+  "review_flags_for_phase_4_5_gaps": [
+    "R1.6/R8.9 Ward structure — assume single-LGA-wide; external verification via NSW Electoral Commission",
+    "R1.10 Delivery Program 2025–2029 adoption date",
+    "R2.6 Director Corporate Services identity",
+    "R2.7 Director Land Use & Infrastructure identity",
+    "R2.9 ARIC independent chair identity",
+    "R3.3 RAP status and dates",
+    "R3.4 NAIDOC Week activity",
+    "R3.5 Dual-named places",
+    "R3.7 Permanent flag-flying protocol",
+    "R3.8 Aboriginal Advisory Committee",
+    "R3.9 2023 Voice referendum position",
+    "R5.1 Burwood2036 CSP adoption date",
+    "R5.4 Current FY rate peg % (IPART — annual update)",
+    "R6.5 Pet registration fee amounts (NSW OLG — external)",
+    "R6.6 Parking permit fee amounts (Fees & Charges schedule)",
+    "R6.10 Food business inspection fee amount",
+    "R7.1 NSW SES local unit and phone",
+    "R7.3 Fire & Rescue NSW station locator for Burwood",
+    "R7.5 Local flood plan document",
+    "R7.7 Heatwave / extreme weather plan",
+    "R7.8 LEMC contact",
+    "R7.9 Bushfire-prone land status",
+    "R7.10 Evacuation centres / resilience hubs registry",
+    "R8.2 Sandakan Friendship City formalisation date (prior seed attributed 17 Aug 2012 — unverified)",
+    "R8.8 2016 amalgamation record (external: Burwood was NOT amalgamated)",
+    "R9.5 State MP for Strathfield",
+    "R9.7 University partnerships",
+    "R9.10 Bulky waste / kerbside contractor identity",
+    "R10.2–R10.5 Neighbour switchboard phones — retained from neighbour corpora (cross-verify in live QA)",
+    "R10.8 Northern-edge bordering suburbs"
+  ]
+}

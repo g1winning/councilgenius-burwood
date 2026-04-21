@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "name": "Council Genius V10 — Burwood Council Canonical Test Suite (Layer 1)",
+    "version": "1.0.0",
+    "council": "Burwood Council",
+    "endpoint": "TBC — pending Phase 9 Railway deploy (use --endpoint at CLI)",
+    "health_endpoint": "TBC — pending Phase 9 Railway deploy (use --health at CLI)",
+    "request_format": "POST JSON {\"messages\":[{\"role\":\"user\",\"content\":\"<query>\"}]}",
+    "expected_response_field": "reply",
+    "purpose": "Run against the live Burwood /chat endpoint after every deploy. Each test has an expected-answer pattern (specific phone number, amount, date, name, or phrase). Pass = all required patterns appear in the reply. Also runnable locally against knowledge.txt via --local mode.",
+    "last_verified_iso": "2026-04-21",
+    "knowledge_base": "../kb/knowledge.txt"
+  },
+
+  "tests": [
+    {
+      "id": "T-001",
+      "category": "contacts",
+      "query": "What's the main phone number for Burwood Council?",
+      "must_include": ["9911 9911"],
+      "should_include": ["24", "Council"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-002",
+      "category": "contacts",
+      "query": "What's the main email address for Burwood Council?",
+      "must_include": ["council@burwood.nsw.gov.au"],
+      "should_include": ["Council"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-003",
+      "category": "contacts",
+      "query": "Where is Burwood Council's main office?",
+      "must_include": ["2 Conder Street"],
+      "should_include": ["Burwood", "2134"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-004",
+      "category": "identity",
+      "query": "What is the official name of the council?",
+      "must_include": ["Burwood Council"],
+      "should_include": ["NSW", "inner west"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-005",
+      "category": "identity",
+      "query": "Was Burwood Council merged in the 2016 NSW council amalgamations?",
+      "must_include": ["not"],
+      "should_include": ["standalone", "2016"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-006",
+      "category": "demographics",
+      "query": "What is the population of Burwood Council?",
+      "must_include": ["40"],
+      "should_include": ["residents", "Census"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-007",
+      "category": "geography",
+      "query": "What is the northern boundary of Burwood Council?",
+      "must_include": ["Parramatta Road"],
+      "should_include": ["boundary", "northern"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-008",
+      "category": "geography",
+      "query": "What suburbs are inside the Burwood local government area?",
+      "must_include": ["Burwood"],
+      "should_include": ["Croydon", "Enfield", "Strathfield"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-009",
+      "category": "leadership",
+      "query": "Who is the Mayor of Burwood Council?",
+      "must_include": ["John Faker"],
+      "should_include": ["Mayor", "Labor"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-010",
+      "category": "leadership",
+      "query": "Who is the Deputy Mayor of Burwood Council?",
+      "must_include": ["George Mannah"],
+      "should_include": ["Deputy Mayor", "Labor"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-011",
+      "category": "leadership",
+      "query": "Who is the General Manager of Burwood Council?",
+      "must_include": ["Tommaso Briscese"],
+      "should_include": ["General Manager"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-012",
+      "category": "governance",
+      "query": "How many councillors does Burwood Council have?",
+      "must_include": ["seven"],
+      "should_include": ["councillors", "Mayor"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-013",
+      "category": "governance",
+      "query": "Is Burwood Council divided into wards?",
+      "must_include": ["no"],
+      "should_include": ["ward", "single"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-014",
+      "category": "first-nations",
+      "query": "Who are the Traditional Custodians of the land Burwood Council governs?",
+      "must_include": ["Wangal"],
+      "should_include": ["Elders", "Dharug"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-015",
+      "category": "first-nations",
+      "query": "What is Burwood Council's Acknowledgement of Country?",
+      "must_include": ["Wangal Peoples"],
+      "should_include": ["Elders", "respects"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-016",
+      "category": "governance",
+      "query": "What is Burwood2036?",
+      "must_include": ["Burwood2036"],
+      "should_include": ["Community Strategic Plan", "CSP"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-017",
+      "category": "governance",
+      "query": "What legislation governs Burwood Council?",
+      "must_include": ["Local Government Act 1993"],
+      "should_include": ["NSW", "s428"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-018",
+      "category": "rates",
+      "query": "Who sets the NSW rate peg that Burwood Council applies?",
+      "must_include": ["IPART"],
+      "should_include": ["rate peg", "annual"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-019",
+      "category": "rates",
+      "query": "How are Burwood Council rates calculated in NSW?",
+      "must_include": ["land value"],
+      "should_include": ["Valuer General", "s494"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-020",
+      "category": "rates",
+      "query": "How often do Burwood Council rate instalments fall due?",
+      "must_include": ["quarterly"],
+      "should_include": ["instalment", "rates"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-021",
+      "category": "rates",
+      "query": "How can I pay my Burwood Council rates?",
+      "must_include": ["BPAY"],
+      "should_include": ["direct debit", "instalment"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-022",
+      "category": "waste",
+      "query": "What is the FOGO trial in Burwood Council?",
+      "must_include": ["FOGO"],
+      "should_include": ["Food Organics", "Garden Organics"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-023",
+      "category": "waste",
+      "query": "How do I find my bin day in Burwood Council?",
+      "must_include": ["address"],
+      "should_include": ["lookup", "burwood.nsw.gov.au"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-024",
+      "category": "waste",
+      "query": "What size is the red-lid general waste bin in Burwood?",
+      "must_include": ["120"],
+      "should_include": ["litre", "red"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-025",
+      "category": "planning",
+      "query": "When was the Burwood LEP 2012 gazetted?",
+      "must_include": ["9 November 2012"],
+      "should_include": ["LEP", "gazett"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-026",
+      "category": "planning",
+      "query": "When was the Burwood DCP 2012 adopted?",
+      "must_include": ["4 December 2012"],
+      "should_include": ["DCP", "adopted"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-027",
+      "category": "pets",
+      "query": "How do I register my dog or cat in Burwood?",
+      "must_include": ["NSW Pet Registry"],
+      "should_include": ["microchip", "petregistry.nsw.gov.au"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-028",
+      "category": "pets",
+      "query": "Who sets pet registration fees in NSW?",
+      "must_include": ["NSW"],
+      "should_include": ["Pet Registry", "State Government"],
+      "must_not_include": ["Burwood Council sets"]
+    },
+    {
+      "id": "T-029",
+      "category": "parking",
+      "query": "How do I review or appeal a parking fine in Burwood?",
+      "must_include": ["Revenue NSW"],
+      "should_include": ["review", "appeal"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-030",
+      "category": "library",
+      "query": "Where is Burwood Library?",
+      "must_include": ["2 Conder Street"],
+      "should_include": ["Burwood", "Community Hub"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-031",
+      "category": "library",
+      "query": "When is the JP available at Burwood Library?",
+      "must_include": ["Tuesday"],
+      "should_include": ["2", "4"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-032",
+      "category": "venues",
+      "query": "Where is the aquatic centre for Burwood Council?",
+      "must_include": ["Enfield Aquatic"],
+      "should_include": ["pool", "swim"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-033",
+      "category": "engagement",
+      "query": "Where can I have my say on Burwood Council projects?",
+      "must_include": ["Have Your Say"],
+      "should_include": ["haveyoursay", "engagement"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-034",
+      "category": "emergency",
+      "query": "Who do I call for storm and flood emergencies in Burwood?",
+      "must_include": ["132 500"],
+      "should_include": ["SES", "storm"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-035",
+      "category": "crisis",
+      "query": "What crisis lines can Burwood residents call for mental-health support?",
+      "must_include_any_of": ["13 11 14", "1300 22 4636"],
+      "should_include": ["Lifeline", "Beyond Blue"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-036",
+      "category": "family-violence",
+      "query": "Where do I start if I'm experiencing domestic violence in Burwood?",
+      "must_include_any_of": ["000", "1800 RESPECT", "1800 737 732"],
+      "should_include": ["domestic", "violence"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-037",
+      "category": "out-of-area",
+      "query": "I live in Homebush — who is my council?",
+      "must_include": ["Strathfield"],
+      "should_include": ["9748 9999", "Municipality"],
+      "must_not_include": []
+    },
+    {
+      "id": "T-038",
+      "category": "out-of-area",
+      "query": "I live in Concord — who is my council?",
+      "must_include": ["Canada Bay"],
+      "should_include": ["9911 6555", "City of Canada Bay"],
+      "must_not_include": []
+    }
+  ]
+}

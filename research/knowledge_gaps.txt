@@ -1,0 +1,176 @@
+KNOWLEDGE GAPS — BURWOOD COUNCIL (NSW) — V10.3.1
+Authored: 2026-04-21
+Basis: Phase 3.5 NotebookLM reconciliation (30 items classified as NOT IN SOURCES)
+Schema: V9 8-category taxonomy.
+
+===== 1. GOVERNANCE GAPS =====
+
+GAP-G01 Ward structure (R1.6, R8.9)
+  Status: NOT IN SOURCES in NotebookLM and full_crawl
+  Operating assumption: no wards; popularly-elected Mayor (consistent with NSW OLG pattern for LGAs <~40k population and Burwood's historical governance model)
+  Resolution path: external verification via NSW Electoral Commission (https://elections.nsw.gov.au) — single pass at Phase 8 live-site QA
+  KB behaviour: answer "Burwood is governed as a single LGA with no ward division. The Mayor is popularly-elected. Seven councillors total." with <escalate>true</escalate>
+
+GAP-G02 Burwood2036 CSP adoption date (R1.10, R5.1)
+  Status: plan named, adoption date not in sources
+  Resolution path: Council's Burwood2036 landing page at https://www.burwood.nsw.gov.au/Our-Council/Burwood2036
+  KB behaviour: answer "Burwood2036 is the current Community Strategic Plan covering the 2024–2028 Council term. For the exact adoption date, please contact Council directly on (02) 9911 9911." with <escalate>true</escalate>
+
+GAP-G03 Delivery Program 2025–2029 adoption date (R1.10)
+  Resolution path: same — Council policies page
+  KB behaviour: identify plan name + period; defer exact date to Council
+
+GAP-G04 Ward/councillor elected-mayor declaration date (R2.1, R2.2)
+  Status: Mayor date 1–2 Oct 2024 in sources; Deputy date not in sources
+  Resolution path: NSW Electoral Commission declaration records
+  KB behaviour: state what is known (Mayor declared 1–2 Oct 2024 ALP); Deputy Mayor confirmed identity + party only
+
+GAP-G05 Director Corporate Services identity (R2.6)
+  Status: role exists but holder not named in sources
+  Resolution path: Council's staff listing page at https://www.burwood.nsw.gov.au/Our-Council/Our-Staff
+  KB behaviour: "The Director Corporate Services role forms part of Burwood Council's executive team. For the current incumbent, please contact Council on (02) 9911 9911." with <escalate>true</escalate>
+
+GAP-G06 Director Land Use & Infrastructure identity (R2.7)
+  Resolution path: same
+  KB behaviour: same pattern as G05
+
+GAP-G07 ARIC independent chair identity (R2.9)
+  Status: chair role confirmed (independent external member); name not disclosed in scraped corpus
+  Resolution path: Council's ARIC Charter and Annual Report §s428A disclosures
+  KB behaviour: confirm ARIC exists under s428A LGA 1993 with independent external chair; do not name a person
+
+===== 2. FIRST NATIONS GAPS =====
+
+GAP-FN01 Reconciliation Action Plan (RAP) status (R3.3)
+  Status: NOT IN SOURCES
+  Resolution path: external search (Reconciliation Australia RAP registry; Council's policies page)
+  KB behaviour: "We cannot confirm Burwood Council's current RAP status from the official Council website. For the most up-to-date information please contact Council on (02) 9911 9911 or email council@burwood.nsw.gov.au." with <escalate>true</escalate>
+
+GAP-FN02 NAIDOC Week activity (R3.4)
+  Resolution path: Council events calendar
+  KB behaviour: state "Council supports NAIDOC Week annually; specific events are published on Council's calendar at burwood.nsw.gov.au." with <escalate>false</escalate>
+
+GAP-FN03 Dual-named places (English + Aboriginal) (R3.5)
+  Resolution path: NSW Geographical Names Board; Wangal Clan engagement
+  KB behaviour: "Burwood Council's scraped corpus does not list formally dual-named places within the LGA. For authoritative information on dual naming and Wangal place names, contact the NSW Geographical Names Board."
+
+GAP-FN04 Permanent flag-flying protocol (R3.7)
+  Resolution path: Council's protocol manual
+  KB behaviour: "The Aboriginal and Torres Strait Islander flags are flown in accordance with Council's protocol; for specific flag-flying arrangements at the civic building, contact Council."
+
+GAP-FN05 Aboriginal Advisory Committee (R3.8)
+  Resolution path: Council committee register
+  KB behaviour: "Council has a Multicultural Advisory Committee (MAC) that encompasses cultural diversity including Aboriginal and Torres Strait Islander voices; a dedicated Aboriginal Advisory Committee is not listed in the scraped corpus."
+
+GAP-FN06 2023 Voice referendum position (R3.9)
+  Resolution path: Council resolution archive
+  KB behaviour: "Council does not publish a standing statement on the 2023 Voice referendum in the scraped corpus. For Council's formal position refer to the Council meeting minutes archive on the website."
+
+===== 3. RATES, FEES & SCHEDULES (ANNUAL UPDATE) =====
+
+GAP-R01 Current FY rate peg % (R5.4)
+  Status: set annually by IPART (NSW Independent Pricing and Regulatory Tribunal); not a council-authored fact
+  Resolution path: IPART determination at https://www.ipart.nsw.gov.au
+  KB behaviour: "The rate peg is set annually by IPART; Burwood Council applies the peg determination. For the current-year figure please refer to IPART's website or Council's annual rates notice." with <escalate>false</escalate>
+
+GAP-R02 Pet registration fee amounts (R6.5)
+  Status: NSW-wide framework via NSW Pet Registry; Burwood does not set the amounts
+  Resolution path: https://www.petregistry.nsw.gov.au
+  KB behaviour: describe lifetime-registration model; direct fee queries to NSW Pet Registry
+
+GAP-R03 Parking permit fee schedule (R6.6)
+  Resolution path: Council's Fees and Charges 2025–2026 document
+  KB behaviour: describe program categories (Resident, Visitor, Business, Commuter); direct dollar queries to the Fees & Charges schedule
+
+GAP-R04 Food business inspection / notification fee (R6.10)
+  Resolution path: Fees and Charges 2025–2026
+  KB behaviour: "A Health Administration Fee applies. For current amounts see Council's Fees and Charges 2025–2026 or call (02) 9911 9911."
+
+===== 4. EMERGENCY MANAGEMENT GAPS =====
+
+GAP-E01 NSW SES local unit and phone (R7.1)
+  Status: NOT IN SOURCES
+  KB behaviour: default to NSW SES state line 132 500 for storm/flood; note local unit not in Council corpus
+  Resolution path: https://www.ses.nsw.gov.au
+
+GAP-E02 Fire and Rescue NSW station locator (R7.3)
+  KB behaviour: default to 000 for emergencies; direct non-emergency queries to Fire & Rescue NSW station locator at https://www.fire.nsw.gov.au
+
+GAP-E03 Local flood plan document (R7.5)
+  KB behaviour: flag as "not published in Council's public-facing corpus"; direct to Council for access to the Plans section
+
+GAP-E04 Heatwave / extreme weather response plan (R7.7)
+GAP-E05 LEMC contact (R7.8)
+GAP-E06 Evacuation centres / resilience hubs registry (R7.10)
+  Resolution path for all three: NSW Reconstruction Authority registry; Council emergency management page
+  KB behaviour: state "For emergencies always call 000. For storm and flood call NSW SES on 132 500. For Council-specific emergency contact (02) 9911 9911 (available 24/7)."
+
+GAP-E07 Bushfire-prone land status (R7.9)
+  KB behaviour: "Burwood is an urban inner-west Sydney LGA and is not classified as bushfire-prone per NSW RFS mapping. This statement requires external confirmation via https://www.rfs.nsw.gov.au"
+
+===== 5. STAKEHOLDER & REPRESENTATION GAPS =====
+
+GAP-S01 State MP for Strathfield (R9.5)
+  Status: NOT IN SOURCES in Burwood's own corpus
+  Resolution path: NSW Parliament member lookup (https://www.parliament.nsw.gov.au)
+  KB behaviour: "For your State Member of Parliament representing Burwood (within the seat of Strathfield), please see the NSW Parliament website." with <escalate>false</escalate>
+
+GAP-S02 University partnerships (R9.7)
+  Resolution path: Council economic development / partnerships pages
+  KB behaviour: "University partnerships are not listed in Burwood Council's scraped public corpus. Council has relationships with major nearby universities (UNSW, USyd, WSU) via regional projects but specific formal partnerships are not detailed."
+
+GAP-S03 Bulky waste / kerbside contractor (R9.10)
+  Resolution path: Council contracts register
+  KB behaviour: "Council manages kerbside clean-up services; the external contractor is not published in the scraped corpus."
+
+===== 6. CORRECTIONS & VERIFICATIONS REQUIRED =====
+
+GAP-C01 Sandakan Friendship City formalisation date (R8.2)
+  Prior seed claim: 17 August 2012
+  NotebookLM: confirmed Friendship City status; date NOT IN SOURCES
+  Resolution path: Council Sister/Friendship Cities page; MOU archive
+  KB behaviour: list Sandakan as a Friendship City; do not assert the 17 Aug 2012 date unless externally confirmed
+
+GAP-C02 2016 amalgamation record (R8.8)
+  Known from public record (NSW Local Government reform) that Burwood was NOT amalgamated in 2016
+  Status: NOT IN SOURCES within Burwood's own corpus
+  KB behaviour: safe to assert "Burwood Council was not merged in the 2016 NSW Local Government reforms. Burwood remains a standalone LGA." (NSW Government record — externally verifiable)
+
+GAP-C03 Full Sister/Friendship Cities MOU dates where missing
+  Status: Tianjin, Chuzhou, ShaoGuan, Sandakan — year of formalisation NOT IN SOURCES
+  Resolution: Council archives
+
+===== 7. GEOGRAPHY GAPS =====
+
+GAP-GEO01 Northern-edge bordering suburbs (R10.8)
+  Status: northern boundary defined by Parramatta Road; specific suburbs on the other side not named
+  Resolution: external verification via NSW Office of Local Government LGA boundary maps
+  KB behaviour: "Burwood's northern boundary runs along Parramatta Road. Suburbs immediately north (e.g. North Strathfield, Concord) sit in neighbouring LGAs."
+
+GAP-GEO02 Neighbour council switchboard phones (R10.2–R10.5)
+  Status: NOT IN Burwood's own corpus — this is expected
+  Resolution: phones retained from each neighbour's own scraped council_profile.txt (verified 2026-04-21):
+    - City of Canada Bay: (02) 9911 6555
+    - Municipality of Strathfield: (02) 9748 9999
+    - Inner West Council: 1300 052 637 / (02) 9392 5000
+    - City of Canterbury-Bankstown: (02) 9707 9000
+  KB behaviour: route OUT-OF-AREA requests to the appropriate neighbour with phone + website
+
+===== 8. INSTITUTIONAL & OPERATIONAL GAPS =====
+
+GAP-I01 GM appointment date / salary band (Tommaso Briscese)
+  KB behaviour: confirm Briscese as current GM; defer date/salary to Council Annual Report §s339
+
+GAP-I02 Maternal & Child Health service model
+  Resolution: determine whether MCH delivered by Council or by Sydney Local Health District (SLHD)
+  KB behaviour: "Maternal and child health in Burwood is generally provided through the Sydney Local Health District (SLHD); Council supports through community programs rather than direct clinical delivery. For clinic bookings contact SLHD." with <escalate>true</escalate>
+
+GAP-I03 Aquatic centre — second facility
+  Status: Prior seed referenced two pools; NotebookLM only confirms Enfield Aquatic Centre
+  Resolution: live-site verification in Phase 8 QA
+  KB behaviour: name only Enfield Aquatic Centre until second facility confirmed
+
+===========================================================
+TOTAL GAPS LOGGED: 30
+CATEGORIES: 8
+STRATEGY: KB answers shall acknowledge gaps honestly, provide the most useful answer possible from known facts, and direct users to the correct escalation path (Council switchboard, or the relevant external authority). Setting <escalate>true</escalate> for items requiring Council contact ensures cultural safety and avoids fabricated specifics.
