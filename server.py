@@ -774,8 +774,9 @@ class Handler(BaseHTTPRequestHandler):
 
                 global TOTAL_QUERIES
                 TOTAL_QUERIES += 1
-                # V10.3.1 retrieval: inject top-k BM25 chunks as RETRIEVED_CONTEXT on the user message
-                retrieval_ctx = retrieve_chunks(last_user, top_k=10)
+                # V10.3.1 retrieval: inject top-k BM25 chunks as RETRIEVED_CONTEXT on the user message.
+                # top_k=5 keeps per-query input tokens under ~2.5k, respecting the 30k TPM org cap.
+                retrieval_ctx = retrieve_chunks(last_user, top_k=5)
                 reply = call_claude(messages, retrieval_context=retrieval_ctx)
                 log_query_full(last_user, reply, category)
                 self._send_json({
