@@ -29,7 +29,16 @@ from urllib.parse import urlparse, parse_qs
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-KNOWLEDGE_PATH = os.path.join(BASE_DIR, 'knowledge.txt')
+KB_DIR   = os.path.join(BASE_DIR, 'kb')
+# knowledge.txt + knowledge_meta.json live in kb/; check there first, then root as fallback.
+def _resolve(filename):
+    cand = [os.path.join(KB_DIR, filename), os.path.join(BASE_DIR, filename)]
+    for p in cand:
+        if os.path.exists(p):
+            return p
+    return cand[0]  # default to kb/ path (will 404 gracefully downstream)
+
+KNOWLEDGE_PATH = _resolve('knowledge.txt')
 ANALYTICS_PATH = os.path.join(BASE_DIR, 'analytics.csv')
 FEEDBACK_PATH  = os.path.join(BASE_DIR, 'feedback.csv')
 API_KEY_PATH   = os.path.join(BASE_DIR, 'api_key.txt')
@@ -38,7 +47,7 @@ QUERIES_FULL_JSONL  = os.path.join(BASE_DIR, 'queries_full.jsonl')
 
 # V10 sidecars
 SYNONYMS_PATH       = os.path.join(BASE_DIR, 'burwood_synonyms.json')
-KNOWLEDGE_META_PATH = os.path.join(BASE_DIR, 'knowledge_meta.json')
+KNOWLEDGE_META_PATH = _resolve('knowledge_meta.json')
 
 # ── Startup tracking ──────────────────────────────────────────────────────────
 SERVER_START_TIME = time.time()
@@ -98,23 +107,49 @@ PHONETIC_CONFUSABLES  = SYNONYMS.get('phonetic_confusables', {}) or {}
 CATEGORIES_V10        = SYNONYMS.get('categories', {}) or {}
 FALLBACK_RULES        = SYNONYMS.get('fallback_rules', {}) or {}
 
+# V10.3.1 Burwood synonyms schema:
+#   categories: { category_name: [synonyms...] }     (flat list per category)
+#   redirect_phrases: { phrase: target_question }    (top-level dict)
+#   misspellings: { wrong: right }                   (top-level dict)
+# Legacy V10 schema had nested category bodies; support both defensively.
+
 REDIRECT_PHRASES = {}
+# Top-level redirect_phrases (V10.3.1 Burwood schema)
+for phrase, target in (SYNONYMS.get('redirect_phrases') or {}).items():
+    REDIRECT_PHRASES[phrase.lower()] = target
+# Legacy nested redirect_phrases (V10 fleet schema)
 for cat_key, cat_body in CATEGORIES_V10.items():
-    for phrase, target in (cat_body.get('redirect_phrases') or {}).items():
-        REDIRECT_PHRASES[phrase.lower()] = target
+    if isinstance(cat_body, dict):
+        for phrase, target in (cat_body.get('redirect_phrases') or {}).items():
+            REDIRECT_PHRASES[phrase.lower()] = target
 
 SYNONYM_TO_CATEGORY = {}
 for cat_key, cat_body in CATEGORIES_V10.items():
-    bucket = (
-        (cat_body.get('canonical')      or []) +
-        (cat_body.get('lay_synonyms')   or []) +
-        (cat_body.get('misspellings')   or []) +
-        (cat_body.get('voice_garbles')  or []) +
-        (cat_body.get('child_terms')    or []) +
-        (cat_body.get('senior_terms')   or [])
-    )
-    for term in bucket:
-        SYNONYM_TO_CATEGORY.setdefault(term.lower(), cat_body.get('canonical_category', cat_key))
+    if isinstance(cat_body, list):
+        # V10.3.1 Burwood schema — flat synonym list
+        for term in cat_body:
+            if isinstance(term, str):
+                SYNONYM_TO_CATEGORY.setdefault(term.lower(), cat_key)
+    elif isinstance(cat_body, dict):
+        # Legacy V10 fleet schema — sub-bucketed synonyms
+        bucket = (
+            (cat_body.get('canonical')      or []) +
+            (cat_body.get('lay_synonyms')   or []) +
+            (cat_body.get('misspellings')   or []) +
+            (cat_body.get('voice_garbles')  or []) +
+            (cat_body.get('child_terms')    or []) +
+            (cat_body.get('senior_terms')   or [])
+        )
+        for term in bucket:
+            if isinstance(term, str):
+                SYNONYM_TO_CATEGORY.setdefault(term.lower(), cat_body.get('canonical_category', cat_key))
+
+# Also absorb top-level misspellings dict as global substitutions if present
+TOP_LEVEL_MISSPELLINGS = SYNONYMS.get('misspellings') or {}
+if isinstance(TOP_LEVEL_MISSPELLINGS, dict):
+    for wrong, right in TOP_LEVEL_MISSPELLINGS.items():
+        if isinstance(wrong, str) and isinstance(right, str):
+            GLOBAL_SUBS.setdefault(wrong.lower(), right)
 
 # Metaphone (optional)
 try:
