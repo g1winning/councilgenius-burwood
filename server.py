@@ -163,12 +163,29 @@ except Exception as _e:
 
 _PHONETIC_SEEDS = {}
 if _METAPHONE_OK:
+    # Legacy V10 fleet schema — phonetic_seeds nested inside each category body
     for cat_key, cat_body in CATEGORIES_V10.items():
-        target_cat = cat_body.get('canonical_category', cat_key)
-        for seed in (cat_body.get('phonetic_seeds') or []):
+        if isinstance(cat_body, dict):
+            target_cat = cat_body.get('canonical_category', cat_key)
+            for seed in (cat_body.get('phonetic_seeds') or []):
+                p1, p2 = doublemetaphone(seed)
+                if p1: _PHONETIC_SEEDS.setdefault(p1, []).append((seed, target_cat))
+                if p2: _PHONETIC_SEEDS.setdefault(p2, []).append((seed, target_cat))
+    # V10.3.1 Burwood schema — phonetic_seeds is a top-level dict: { seed: target_cat }
+    top_seeds = SYNONYMS.get('phonetic_seeds')
+    if isinstance(top_seeds, dict):
+        for seed, target_cat in top_seeds.items():
+            if not isinstance(seed, str): continue
             p1, p2 = doublemetaphone(seed)
             if p1: _PHONETIC_SEEDS.setdefault(p1, []).append((seed, target_cat))
             if p2: _PHONETIC_SEEDS.setdefault(p2, []).append((seed, target_cat))
+    elif isinstance(top_seeds, list):
+        # Tolerate list-of-strings top-level seeds
+        for seed in top_seeds:
+            if not isinstance(seed, str): continue
+            p1, p2 = doublemetaphone(seed)
+            if p1: _PHONETIC_SEEDS.setdefault(p1, []).append((seed, seed))
+            if p2: _PHONETIC_SEEDS.setdefault(p2, []).append((seed, seed))
 
 _WORD_RE = re.compile(r"[A-Za-z']+")
 _STOPWORDS = set("a an and are as at be by for from has have he her him his i in is it its me my of on or our she that the their them they this to us was we were will with you your".split())
