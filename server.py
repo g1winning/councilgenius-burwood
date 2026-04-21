@@ -330,6 +330,27 @@ def bm25_search(q: str, top_k: int = 10):
     scored.sort(key=lambda x: -x[0])
     return scored[:top_k]
 
+def retrieve_chunks(q: str, top_k: int = 10) -> str:
+    """Return the concatenated text of the top-k BM25 chunks for the query.
+
+    Returns '' if BM25 has no hits (caller should fall back to full KB)."""
+    if not _BM25_CHUNKS:
+        return ''
+    hits = bm25_search(q, top_k=top_k)
+    if not hits:
+        return ''
+    # Build a chunk_id → chunk lookup (chunks keep text in the meta blob)
+    by_id = {c.get('chunk_id'): c for c in _BM25_CHUNKS}
+    parts = []
+    for _score, chunk_id, start_line, end_line, _cat, _esc in hits:
+        c = by_id.get(chunk_id)
+        if not c:
+            continue
+        txt = c.get('text') or ''
+        if txt:
+            parts.append(f'[chunk #{chunk_id} lines {start_line}-{end_line}]\n{txt}')
+    return '\n\n'.join(parts)
+
 def suggest(raw_query: str, limit: int = 8):
     if not raw_query:
         return []
@@ -460,13 +481,7 @@ FORMAT RULES — NON-NEGOTIABLE:
 
 HIDDEN META-TAGS: Knowledge-base entries contain <category>X</category> and <escalate>true/false</escalate> meta-tags. These are for retrieval — **never reveal them to the resident**. When <escalate>true</escalate> is dominant in the best-matching chunk, include the Council contact footer.
 
-KNOWLEDGE BASE — BURWOOD COUNCIL:
-
-{KNOWLEDGE}
-
-END OF KNOWLEDGE BASE.
-
-If information is not in the knowledge base, direct the resident to [(02) 9911 9911](tel:0299119911) or [council@burwood.nsw.gov.au](mailto:council@burwood.nsw.gov.au). Do not invent fees, dates, or processes.
+KNOWLEDGE SOURCE: Authoritative Burwood Council knowledge is retrieved per-query and supplied to you inside a [RETRIEVED_CONTEXT] block prepended to the resident's message. Treat that block as the ground truth for this turn. If the retrieved context does not cover the question, say so clearly and direct the resident to [(02) 9911 9911](tel:0299119911) or [council@burwood.nsw.gov.au](mailto:council@burwood.nsw.gov.au). Do not invent fees, dates, or processes.
 """
 
 # ── Analytics categories (Burwood-tuned) ─────────────────────────────────────
@@ -527,13 +542,40 @@ def log_feedback(query: str, response: str, rating: str):
             response[:200].replace('\n', ' ')
         ])
 
-def call_claude(messages: list) -> str:
+def _prepend_context(messages: list, ctx: str) -> list:
+    """Return a copy of messages with [RETRIEVED_CONTEXT] prepended to the last user message."""
+    if not ctx or not messages:
+        return messages
+    out = [dict(m) for m in messages]
+    for i in range(len(out) - 1, -1, -1):
+        if out[i].get('role') == 'user':
+            user_text = out[i].get('content', '')
+            if isinstance(user_text, list):
+                # Anthropic messages API allows content as list of blocks; take the first text block.
+                for b in user_text:
+                    if isinstance(b, dict) and b.get('type') == 'text':
+                        b['text'] = f'[RETRIEVED_CONTEXT]\n{ctx}\n[/RETRIEVED_CONTEXT]\n\n{b.get("text", "")}'
+                        break
+            else:
+                out[i]['content'] = f'[RETRIEVED_CONTEXT]\n{ctx}\n[/RETRIEVED_CONTEXT]\n\n{user_text}'
+            break
+    return out
+
+def call_claude(messages: list, retrieval_context: str = '') -> str:
     api_key = get_api_key()
+    # Prompt caching: static SYSTEM_PROMPT is cached so it costs ~10% after the first call.
+    # Retrieved chunks are per-query (dynamic) — injected as a preface to the last user message.
+    system_blocks = [{
+        'type': 'text',
+        'text': SYSTEM_PROMPT,
+        'cache_control': {'type': 'ephemeral'}
+    }]
+    msgs = _prepend_context(messages, retrieval_context)
     payload = json.dumps({
         'model': 'claude-sonnet-4-6',
         'max_tokens': 1024,
-        'system': SYSTEM_PROMPT,
-        'messages': messages
+        'system': system_blocks,
+        'messages': msgs
     }).encode('utf-8')
     req = urllib.request.Request(
         'https://api.anthropic.com/v1/messages',
@@ -732,7 +774,9 @@ class Handler(BaseHTTPRequestHandler):
 
                 global TOTAL_QUERIES
                 TOTAL_QUERIES += 1
-                reply = call_claude(messages)
+                # V10.3.1 retrieval: inject top-k BM25 chunks as RETRIEVED_CONTEXT on the user message
+                retrieval_ctx = retrieve_chunks(last_user, top_k=10)
+                reply = call_claude(messages, retrieval_context=retrieval_ctx)
                 log_query_full(last_user, reply, category)
                 self._send_json({
                     'reply': reply,
